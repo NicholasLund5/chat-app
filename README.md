@@ -65,4 +65,4 @@ Contributions are welcome! Please feel free to submit a pull request or create a
 
 ## License
 
-Distributed under the MIT License. See `license.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
