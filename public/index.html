@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>Encrypted Chat App</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Anonymous+Pro" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .main { 
+        font-family: Anonymous Pro; 
+        
+
+        }
+        .signin {
+
+        }
+        body {
+            background-color: #F0F5F4;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
+            background: rgb(132,202,188);
+        background: radial-gradient(circle, rgba(132,202,188,1) 0%, rgba(11,75,62,1) 100%);
+        }
+        .titlehead{
+            padding-top: 50px;
+            font-size: 100px;
+            font-weight: bolder;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+        .form-dropdown {
+            position: fixed;
+        }
+        .form-dropdown .collapse {
+            position: fixed;
+            width: 100%;
+        }
+        
+    </style>
+    </head>
+<body class="main">
+    
+    
+    <div class="titlehead">
+        <p><b>Encrypted Chat</b></p>
+    </div>
+
+    <div style="text-align: center;">
+
+        <h1><span style='font-size: 30px;'>&#128273;</span> End to End Encrypted Chat  <span style='font-size:30px;'>&#128274;</span></h1>
+        <h5 style="width: 25%; margin: auto; margin-top: 30px; text-align:justify">
+            With <b>end-to-end encryption</b> your message is <b>encrypted</b> on <b>your device</b> and can only be <b>decrypted</b> by the <b>recipient's device</b>. This means that even your <b>service provider</b> can't access your message.
+        </h5>
+    </div>
+
+    <div class="container text-center mt-2" style="">
+        <div class="row justify-content-sm-center">
+            <!-- Sign In Form -->
+            <div class="col-md-3 text-center" style="margin-top: 20px; max-width: 20%; margin-right: 0px; margin-left: 0px;">
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#login-form" aria-expanded="false" aria-controls="login-form">
+                    Sign In
+                </button>
+                <div class="collapse" id="login-form" style="margin-top: 20px; outline: 1px solid black; border-radius: 10px;">
+                    <div class="card card-body" style="border-radius: 10px;">
+                        <form action="/login" method="post">
+                            <input type="text" name="username" placeholder="Username" required><br>
+                            <input type="password" name="password" placeholder="Password" required><br>
+                            <button type="submit" class="btn btn-success">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 text-center" style="margin-top: 30px; max-width: 20%">
+                
+                <p>or</p> 
+                
+      
+            </div>
+
+            <!-- Sign Up Form -->
+            <div class="col-md-3 text-center" style="margin-top: 20px; max-width: 20%">
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#signup-form" aria-expanded="false" aria-controls="signup-form">
+                    Sign Up
+                </button>
+                <div class="collapse" id="signup-form" style="margin-top: 20px; outline: 1px solid black; border-radius: 10px;">
+                    <div class="card card-body" style="border-radius: 10px;">
+                        <form action="/signup" method="post">
+                            <input type="text" name="username" placeholder="New Username" required><br>
+                            <input type="password" name="password" placeholder="New Password" required><br>
+                            <button type="submit" class="btn btn-success">Signup</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Link to chat page (this will be removed or hidden upon implementation) -->
+    <a href="chat.html" style="display:none;">Go to Chat</a>
+</body>
+</html>

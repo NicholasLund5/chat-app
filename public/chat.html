@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encrypted Chat App</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Anonymous+Pro" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .main { 
+        font-family: Anonymous Pro; 
+        }
+        body {
+            padding-left: 25%; /* Add padding to body to prevent content from being hidden */
+            background-color: #F0F5F4;
+        }
+        #left-column {
+            display: flex;          /* Make it a flex container */
+            flex-direction: column; /* Arrange children in a column */
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 25%;
+            background-color: #FAF3F0;
+            /*background: linear-gradient(180deg, rgba(130,130,130,0.2) 0%, rgba(255,255,255,1) 100%);*/
+            border-right: 1px solid black; /* Optional: Add border for separation */
+            margin-top: 0px;
+            
+        }
+        #connected-users {
+            outline: 1px solid black;
+            border-radius: 15px;
+            left: 0; 
+            bottom: 0;
+            margin-top: auto;
+            background-color: #F0F5F4;
+}
+        #message-form {
+            margin-top: 10px;
+            box-shadow: none;
+        }
+        #messages {
+            
+            padding: 10px; /* Add padding to messages container */
+            /*height: calc(100vh - 72px); /* Adjust height to fit remaining viewport */
+            box-shadow: none;
+            overflow-wrap: anywhere;
+        }
+        .message {
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+        #messages > .message:first-child {
+            margin-top: 140px;
+        }
+        textarea {
+            z-index: 2;
+            background-color: #FAF3F0;
+            outline: none;
+            box-shadow: none;
+            border-color: transparent;
+            overflow-y: hidden; /* Hide vertical scrollbar */
+        }
+        textarea::selection {
+            border-color: transparent;
+            outline: none;
+            box-shadow: none;
+        }
+        textarea:focus {
+            outline: none !important;
+            box-shadow: none;
+        }
+        .zoomed {
+            transform: scale(2); /* Double the size */
+            transition: transform 0.3s ease; /* Add transition for smooth zoom effect */
+        }
+        .spinner {
+            /* Style your loading spinner here */
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #user-list {
+            padding: 0;
+            margin: 0;
+        }
+
+        #user-list li {
+            padding: 20px;
+            margin: 0;
+        }
+        #user-list hr {
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+        }
+        .mybutton {
+            color: black;
+
+        }
+        .mybutton:hover{
+            opacity: .5;
+            color: red;
+            outline: none;
+            box-shadow: none;
+        }
+        .mybutton::selection{
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<body class="main">
+
+    <!-- left hand, name and info -->
+    <div id="left-column" style="padding: 40px; padding-top: 25px;">
+        <a href="index.html"><i class="mybutton  bi bi-arrow-left-short" style="position: fixed; top: 0; left: 0; padding-left: 5px; padding-top: 0px; font-size: 30px;"></i></a>
+        <!-- header -->
+        <h1 style=" ">ENCRYPTED CHAT</h1>
+
+
+            <!-- name inputt -->
+            <div style="padding-top: 15px;">
+                <input style="border-radius: px; outline: 1px solid black;" type="text" id="username-input" placeholder="Enter your name" class="form-control">
+            </div>
+
+            
+
+            <!-- spinner -->
+            <div class=".spinner" id="image-preview" style="">
+            </div>
+
+            
+
+            <!--- connected users -->
+            <!--users-->
+        <div id="connected-users" style="outline: 1px solid black;  border-radius: 15px; overflow-y: hidden;">
+            <h2 style="padding-top: 20px;padding-left: 20px;padding-bottom: 10px;"><b></b>Connected Users</b></h2>
+            <ul id="user-list" style="">
+                <!-- Connected users will be listed here -->
+            </ul>
+        </div>
+
+    </div>
+
+
+
+    <!-- right hand side, message feed -->
+    <form id="message-form">
+        <!-- message input -->
+        <div style="text-align: center; padding: 18px 30px 0px 35px; margin-bottom: 20px; position: fixed; width:75%; height: auto">
+            <textarea 
+            style="
+            
+            background-color: #FAF3F0; 
+            border: 1px solid black;
+            resize: none; 
+            box-shadow: none;
+            padding: 20px;
+            " 
+            type="text" id="message-input" placeholder="Type your message" class="form-control">
+            </textarea>
+            
+            <!-- image input -->
+            <div class="input-group" style="display: flex; justify-content: flex-end; align-items: center; padding: 10px; padding-right: 0px; color: #448BEB">
+                <input type="file" id="image-input" accept="image/*" class="form-control" style="width: auto; flex-grow: 0; margin-right: 10px; outline: 1px solid black"></input>
+                <button type="submit" class="btn btn-md btn-outline-primary">  SEND</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- message output -->
+    <div id="messages">
+    <!-- Messages will be appended here -->
+    </div>
+    
+
+    <!-- scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
