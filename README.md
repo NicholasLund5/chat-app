@@ -28,7 +28,6 @@ npm install
 3. Configure your MongoDB connection. Replace the following line in `server.js` with your MongoDB URI:
 
 ```javascript
-// Replace with your own MongoDB URI
 mongoose.connect('YOUR_MONGODB_URI', { useNewUrlParser: true, useUnifiedTopology: true });
 ```
 
