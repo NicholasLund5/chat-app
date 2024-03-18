@@ -127,32 +127,26 @@
 
 <body class="main">
 
-    <!-- left hand, name and info -->
     <div id="left-column" style="padding: 40px; padding-top: 25px;">
         <a href="index.html"><i class="mybutton  bi bi-arrow-left-short" style="position: fixed; top: 0; left: 0; padding-left: 5px; padding-top: 0px; font-size: 30px;"></i></a>
         <!-- header -->
         <h1 style=" ">ENCRYPTED CHAT</h1>
 
 
-            <!-- name inputt -->
             <div style="padding-top: 15px;">
                 <input style="border-radius: px; outline: 1px solid black;" type="text" id="username-input" placeholder="Enter your name" class="form-control">
             </div>
 
             
 
-            <!-- spinner -->
             <div class=".spinner" id="image-preview" style="">
             </div>
 
             
 
-            <!--- connected users -->
-            <!--users-->
         <div id="connected-users" style="outline: 1px solid black;  border-radius: 15px; overflow-y: hidden;">
             <h2 style="padding-top: 20px;padding-left: 20px;padding-bottom: 10px;"><b></b>Connected Users</b></h2>
             <ul id="user-list" style="">
-                <!-- Connected users will be listed here -->
             </ul>
         </div>
 
@@ -160,9 +154,7 @@
 
 
 
-    <!-- right hand side, message feed -->
     <form id="message-form">
-        <!-- message input -->
         <div style="text-align: center; padding: 18px 30px 0px 35px; margin-bottom: 20px; position: fixed; width:75%; height: auto">
             <textarea 
             style="
@@ -176,7 +168,6 @@
             type="text" id="message-input" placeholder="Type your message" class="form-control">
             </textarea>
             
-            <!-- image input -->
             <div class="input-group" style="display: flex; justify-content: flex-end; align-items: center; padding: 10px; padding-right: 0px; color: #448BEB">
                 <input type="file" id="image-input" accept="image/*" class="form-control" style="width: auto; flex-grow: 0; margin-right: 10px; outline: 1px solid black"></input>
                 <button type="submit" class="btn btn-md btn-outline-primary">  SEND</button>
@@ -184,13 +175,9 @@
         </div>
     </form>
 
-    <!-- message output -->
     <div id="messages">
-    <!-- Messages will be appended here -->
     </div>
     
-
-    <!-- scripts -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="main.js"></script>

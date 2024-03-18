@@ -27,21 +27,29 @@ app.use(session({
     secret: 'yourSecretKey',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Set to true if using https
+    cookie: { secure: false } 
 }));
+
+
+
 
 app.post("/signup", async (req, res) => {
     try {
+        const existingUser = await User.findOne({ username: req.body.username });
+        if (existingUser) {
+            return res.redirect('/?signupError=true');
+        }
+
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new User({
             username: req.body.username,
             password: hashedPassword
         });
         await user.save();
-        res.redirect('/'); // Redirect to the login page or homepage after signup
+        res.redirect('/');
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error registering new user");
+        res.redirect('/?signupError=true');
     }
 });
 
@@ -49,28 +57,18 @@ app.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username });
         if (user && await bcrypt.compare(req.body.password, user.password)) {
-            req.session.userId = user._id; // Set userId in session upon successful login
+            req.session.userId = user._id;
             res.redirect('/chat.html');
         } else {
-            res.status(400).send('Invalid username or password');
+            res.redirect('/?loginError=true');
         }
     } catch (error) {
-        console.error(error);
-        res.status(500).send("Error logging in");
+        console.error('Login error:', error);
+        res.redirect('/?loginError=true');
     }
 });
 
-const requireLogin = (req, res, next) => {
-    if (!req.session.userId) {
-        res.redirect('/');
-    } else {
-        next();
-    }
-};
 
-app.get('/chat.html', requireLogin, (req, res) => {
-    res.sendFile(__dirname + '/public/chat.html');
-});
 
 const connectedUsers = {};
 
@@ -81,13 +79,11 @@ io.on("connection", (socket) => {
 
     socket.on("set pseudonym", (pseudonym) => {
         connectedUsers[socket.id] = pseudonym;
-        // Emit the list of users when a user sets their pseudonym
         io.emit("update user list", Object.values(connectedUsers));
     });
 
     socket.on("disconnect", () => {
         delete connectedUsers[socket.id];
-        // Emit the list of users when a user disconnects
         io.emit("update user list", Object.values(connectedUsers));
     });
 
@@ -96,7 +92,6 @@ io.on("connection", (socket) => {
 
         if (username && connectedUsers[socket.id] !== username) {
             connectedUsers[socket.id] = username;
-            // Emit the updated user list
             io.emit("update user list", Object.values(connectedUsers));
         }
 
@@ -107,4 +102,4 @@ io.on("connection", (socket) => {
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
-});
+}); 

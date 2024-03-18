@@ -22,7 +22,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden; 
             background: rgb(132,202,188);
         background: radial-gradient(circle, rgba(132,202,188,1) 0%, rgba(11,75,62,1) 100%);
         }
@@ -60,7 +60,6 @@
 
     <div class="container text-center mt-2" style="">
         <div class="row justify-content-sm-center">
-            <!-- Sign In Form -->
             <div class="col-md-3 text-center" style="margin-top: 20px; max-width: 20%; margin-right: 0px; margin-left: 0px;">
                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#login-form" aria-expanded="false" aria-controls="login-form">
                     Sign In
@@ -82,7 +81,6 @@
       
             </div>
 
-            <!-- Sign Up Form -->
             <div class="col-md-3 text-center" style="margin-top: 20px; max-width: 20%">
                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#signup-form" aria-expanded="false" aria-controls="signup-form">
                     Sign Up
@@ -101,8 +99,19 @@
     </div>
 
     
-
-    <!-- Link to chat page (this will be removed or hidden upon implementation) -->
-    <a href="chat.html" style="display:none;">Go to Chat</a>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const loginError = urlParams.get('loginError');
+            const signupError = urlParams.get('signupError');
+            if (loginError) {
+                alert('Invalid username or password');
+            }
+            if (signupError) {
+                alert('Username is already taken');
+            }
+        }
+    </script>
+    
 </body>
 </html>
